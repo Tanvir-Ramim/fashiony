@@ -1,0 +1,39 @@
+/* Ensure full-width layout for PDF download and center the content */
+@media print {
+
+    #invoiceToDownload {
+      width: 100%;
+      max-width: 1024px;
+      background-color: #d8a610;
+      padding: 20px;
+    }
+  
+    .hidden-print {
+      display: none;
+    }
+  
+    @page {
+      margin: 14px;
+    }
+  }
+  @media print {
+    img {
+      max-width: 100%; /* Ensure image scales properly */
+      height: auto; /* Maintain aspect ratio */
+      display: block; /* Ensure visibility */
+    }
+  
+    /* Specific handling for small screens */
+    @media (max-width: 768px) {
+      img {
+        max-width: 100%;
+      }
+    }
+    img {
+      content: attr(src); /* Ensure images load */
+    }
+    .grid-cols-print-2 {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }

@@ -1,0 +1,33 @@
+const express = require("express");
+const _ = express.Router();
+const user = require("./user/userApi");
+const auth = require("./user/authApi");
+const product = require("./product/productApi");
+const products = require("./product/productsApi");
+const order = require("./order/orderApi");
+const bar = require("./bar/barApi");
+const asset = require("./asset/assetApi");
+const dash = require("./dashboard/dashApi");
+const cloud = require("./cloud/cloudApi");
+const local = require("./asset/assLocalApi");
+const contact = require("./contactApi");
+const pay = require("./Payment/payApi");
+const shipping = require("./shipping/shippingApi.js");
+const coupon = require("./coupon/couponApi.js");
+
+_.use("/auth", user);
+_.use("/user", auth);
+_.use("/product", product);
+_.use("/products", products);
+_.use("/orders", order);
+_.use("/bar", bar);
+_.use("/asset", asset);
+_.use("/asset-local", local);
+_.use("/dash", dash);
+_.use("/cloudinary", cloud);
+_.use("/contact", contact);
+_.use("/payment", pay);
+_.use("/shipping", shipping);
+_.use("/coupon", coupon);
+
+module.exports = _;

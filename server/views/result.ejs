@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f5ef;
+        color: #323d97;
+      }
+      .container {
+        width: 90%;
+        max-width: 800px;
+        margin: 20px auto;
+        background: white;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .header {
+        background-color: #323d97;
+        color: #f7f5ef;
+        padding: 20px;
+        text-align: center;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+        text-transform: uppercase;
+      }
+      .content {
+        padding: 20px;
+      }
+      .content h2 {
+        margin: 0 0 15px;
+        color: #323d97;
+        font-size: 20px;
+        border-bottom: 2px solid #f7f5ef;
+        display: inline-block;
+        padding-bottom: 5px;
+      }
+      .order-details,
+      .payment-summary {
+        margin-top: 20px;
+      }
+      .order-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .order-table th,
+      .order-table td {
+        text-align: left;
+        padding: 10px;
+        border-bottom: 1px solid #eaeaea;
+      }
+      .order-table th {
+        background-color: #f7f5ef;
+        color: #323d97;
+      }
+      .order-table img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .total-summary {
+        text-align: right;
+        margin-top: 20px;
+      }
+      .total-summary p {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+      .total-summary .highlight {
+        font-weight: bold;
+        font-size: 18px;
+        color: #323d97;
+      }
+      .footer {
+        background-color: #f7f5ef;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        color: #7d7d7d;
+      }
+      .footer a {
+        color: #323d97;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>Order Confirmation</h1>
+        <p>Thank you for shopping with Patrenee!</p>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Customer Details -->
+        <div>
+          <h2>Customer Information</h2>
+          <p><strong>Name:</strong> <%= order?.customer_name %></p>
+          <p><strong>Contact:</strong> <%= order?.customer_phone %></p>
+          <p><strong>Address:</strong> <%= order?.address %></p>
+        </div>
+
+        <!-- Order Details -->
+        <div class="order-details">
+          <h2>Order Details</h2>
+          <table class="order-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% order?.product_list?.forEach((product) => { %>
+              <tr>
+                <td>
+                  <img
+                    src="<%= product?.p_ref?.url[0]?.url %>"
+                    alt="Product Image"
+                  />
+                  <div>
+                    <p><%= product?.p_ref?.title %></p>
+                    <p>Size: <%= product?.size %></p>
+                    <p>SKU: <%= product?.sku %></p>
+                  </div>
+                </td>
+                <td><%= product.quantity %></td>
+                <td>৳<%= product.p_ref.offer_price %></td>
+                <td>৳<%= product.p_ref.offer_price * product.quantity %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Payment Summary -->
+        <section class="payment-summary">
+          <h2>Payment Summary</h2>
+          <div class="total-summary">
+            <p>
+              Subtotal: ৳<%=
+              (order?.applied_coupon?.isAppied ? order?.offer_price + order?.coupon_discount
+              : 0) %>
+            </p>
+            <% if (order?.applied_coupon?.isAppied) { %>
+            <p>Coupon Discount: -৳<%= order?.coupon_discount || 0 %></p>
+            <% } %>
+            <p>Shipping: +৳<%= order?.shipping %></p>
+            <p class="highlight">Total: ৳<%= order?.total_price %></p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>
+          For inquiries, please contact us at
+          <a href="tel:01886230003">01886-230003</a>
+        </p>
+        <p>&copy; 2024 Patrenee. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>

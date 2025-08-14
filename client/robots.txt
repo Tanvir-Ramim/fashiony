@@ -1,0 +1,12 @@
+# Allow all web crawlers access to all content
+User-agent: *
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /user-profile/
+
+# Allow Googlebot to access everything (remove if unnecessary)
+User-agent: Googlebot
+Disallow: 
+
+# Sitemap location
+Sitemap: https://Fashiony.com/sitemap.xml

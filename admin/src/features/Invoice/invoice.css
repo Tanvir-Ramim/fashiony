@@ -1,0 +1,56 @@
+/* @media print {
+    body * {
+      visibility: hidden;
+    }
+    .print-section,
+    .print-section * {
+      visibility: visible;
+      overflow: hidden;
+    }
+    .print-section {
+      padding: 100px;
+      width: 100%;
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      overflow: hidden;
+    }
+    .curier-Info {
+      margin-top: 10px;
+      overflow: hidden;
+      font-size: 12px;
+      max-width: 200px;
+      max-height: 200px;
+      color: #6c6c6c;
+    }
+  }
+   */
+   /* Ensure full-width layout for PDF download and center the content */
+@media print {
+  html, body {
+    width: 1024px; /* Force width for large devices */
+    height: 100%; /* Set full height */
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: #c2961c; /* Apply background color */
+  }
+
+  #invoiceToDownload {
+    width: 100%;
+    max-width: 1024px; /* Ensure the invoice doesn't exceed the set width */
+    background-color: #d8a610; /* Background color for invoice */
+    padding: 20px; /* Optional padding for better presentation */
+  }
+
+  .hidden-print {
+    display: none;
+  }
+
+  /* Remove default browser header and footer */
+  @page {
+    margin: 14px; /* Remove all default margins */
+  }
+}

@@ -1,0 +1,17 @@
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px; /* Thinner scrollbar */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #dfd8c7; /* Soft pastel thumb color */
+    border-radius: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #f7f7f7; /* Soft pastel track color */
+  }
+  
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #d8d4c9 #fdfdfd; /* Softer, more pastel colors for Firefox */
+  }
